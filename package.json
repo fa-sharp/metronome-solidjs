@@ -1,7 +1,7 @@
 {
-  "name": "metronome-solid",
+  "name": "metronome-solidjs",
   "version": "0.0.1",
-  "description": "",
+  "description": "A metronome app written with Solid.js",
   "scripts": {
     "start": "vite",
     "dev": "vite",
