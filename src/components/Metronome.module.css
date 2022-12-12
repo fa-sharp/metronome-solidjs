@@ -1,0 +1,61 @@
+.light-container {
+    --light-color: #4dec4f;
+    --track-color: #5c5c5c;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.light-container::before {
+    height: 1rem;
+    width: 1rem;
+    
+    border-radius: 50%;
+    background-color: var(--track-color);
+    content: "";
+    
+    transform: translateX(0.5rem);
+}
+
+.light-container::after {
+    height: 1rem;
+    width: 1rem;
+    
+    border-radius: 50%;
+    background-color: var(--track-color);
+    content: "";
+    
+    transform: translateX(-0.5rem);
+}
+
+.light-track {
+    height: 1rem;
+    width: 4rem;
+    
+    background-color: var(--track-color);
+}
+
+.light {
+    position: relative;
+    display: inline-block;
+    z-index: 100;
+
+    opacity: 0;
+    
+    height: 1rem;
+    width: 1rem;
+    border-radius: 50%;
+    background-color: var(--light-color);
+    
+    transform: translateX(-2rem);
+    transition: transform linear var(--interval-time);
+}
+
+.light.on {
+    opacity: 1;
+}
+
+.light.second-beat {
+    transform: translateX(2rem);
+}
