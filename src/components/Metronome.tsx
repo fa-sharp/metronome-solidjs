@@ -1,4 +1,5 @@
 import { Component, createEffect, createSignal } from "solid-js";
+import { beep } from "../lib/audio";
 import useMetronome from "../lib/useMetronome";
 import styles from "./Metronome.module.css";
 
@@ -9,8 +10,11 @@ const Metronome: Component = () => {
   const [displayedTempo, setDisplayedTempo] = createSignal(tempo());
 
   createEffect(
-    (currentBeat) => {
+    (previousBeat) => {
       if (!isRunning()) return;
+      if (previousBeat === 4) beep(100, 792, 1);
+      else beep(100, 600, 1);
+
       setLight(true);
       setTimeout(() => setLight(false), 100);
       return beat();
@@ -21,17 +25,18 @@ const Metronome: Component = () => {
 
   return (
     <div>
-        <h1>Solid Metronome</h1>
-        <div class={styles["light-container"]}>
-          <div class={styles["light-track"]}>
+      <h1>Solid Metronome</h1>
+      <div class={styles["light-container"]}>
+        <div class={styles["light-track"]}>
           <div
             classList={{
               [styles.light]: true,
               [styles.on]: true,
               [styles["second-beat"]]: beat() % 2 === 1,
             }}
-          /></div>
+          />
         </div>
+      </div>
       <p>Beat: {beat()} </p>
       <button onClick={start}>Start</button>
       <button onClick={stop}>Stop</button>
